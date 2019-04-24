@@ -91,6 +91,7 @@ if(isset($_POST['remove'])) {
   readfile("add_News.html");
   $table = New Table();
   $table->createTable($news_Result);
+  echo "<a class='btn' href='logout.php'>Wyloguj</a>";
   readfile("foot.html");
 } else {
   echo "Błędne hasło";
