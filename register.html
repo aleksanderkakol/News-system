@@ -10,26 +10,28 @@
 </head>
 
 <body>
-  <form class="register_form" action="register.php" method="post">
-    <h2>Zarejestruj się</h2>
-    <label for="firstName">Imię: </label>
-    <input class="first_name" type="text" id="firstName" name="first_name" autocomplete="username" required>
-    <label for="lastName">Nazwisko: </label>
-    <input class="last_name" type="text" id="lastName" name="last_name" autocomplete="family-name" required>
-    <label for="E-mail">E-mail: </label>
-    <input class="email" type="email" id="E-mail" name="email" autocomplete="email" required>
-    <label for="sex">Płeć: </label>
-    <select class="gender" class="select_gender" name="gender">
-      <option value="m">Boy</option>
-      <option value="f">Girl</option>
-    </select>
-    <label for="pass">Hasło: </label>
-    <input class="password" type="password" id="pass" name="password" autocomplete="new-password" required>
-    <label for="checkPass">Powtórz hasło: </label>
-    <input class="check_pass" type="password" id="checkPass" name="passsword_check" autocomplete="new-password" required>
-    <button type="submit" class="btn register_btn" name="register" value="submit">Zarejestruj się</button>
-    <a class="btn" href="index.html">Zaloguj się</a>
-  </form>
+  <section>
+    <form class="register_form" action="register.php" method="post">
+      <h2>Zarejestruj się</h2>
+      <label for="firstName">Imię: </label>
+      <input autocomplete="off" class="first_name" type="text" id="firstName" name="first_name" autocomplete="username" required>
+      <label for="lastName">Nazwisko: </label>
+      <input autocomplete="off" class="last_name" type="text" id="lastName" name="last_name" autocomplete="family-name" required>
+      <label for="E-mail">E-mail: </label>
+      <input autocomplete="off" class="email" type="email" id="E-mail" name="email" autocomplete="email" required>
+      <label for="sex">Płeć: </label>
+      <select class="gender" class="select_gender" name="gender">
+        <option value="m">Boy</option>
+        <option value="f">Girl</option>
+      </select>
+      <label for="pass">Hasło: </label>
+      <input class="password" type="password" id="pass" name="password" autocomplete="new-password" required>
+      <label for="checkPass">Powtórz hasło: </label>
+      <input class="check_pass" type="password" id="checkPass" name="passsword_check" autocomplete="new-password" required>
+      <button type="submit" class="btn register_btn" name="register" value="submit" alt="Zarejestruj się">Zarejestruj się</button>
+      <a href="index.html" alt="Zaloguj się">Zaloguj się</a>
+    </form>
+  </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" async></script>
   <script src="register.js" async></script>
   <script src="ajax.js" async></script>
