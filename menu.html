@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="menu.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <title>Menu</title>
+</head>
+
+<body>
+  <h1>Menu</h1>
+  <button class="btn news_btn" type="button" name="new_news" alt="Dodaj news'a">Dodaj news'a</button>
+  <div class="wrap">
+    <form class="add_form" action="menu.php" method="post">
+      <h3>Dodaj News'a</h3>
+      <label>Nazwa: <input type="text" name="add_name" placeholder="Nazwa"></label>
+      <label>Opis: <textarea type="text" name="add_dsc" rows="8" cols="80"></textarea></label>
+      <button class="btn" type="submit" name="add_news" alt="Dodaj">Dodaj</button>
+      <button class="btn abort" type="submit" name="abort" alt="Anuluj">Anuluj</button>
+    </form>
+  </div>
+  <table class="table">
+    <thead>
+      <tr></tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <a class="logout" href="logout.php" alt="Wyloguj">Wyloguj</a>
+  <script src="./menu.js" charset="utf-8"></script>
+</body>
+
+</html>

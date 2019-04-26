@@ -40,10 +40,10 @@ if($value === '1' || $_SESSION['status'] === 'logged_in') {
   $news_Query = "SELECT * FROM news";
   $news_Result = mysqli_query($link, $news_Query) or die(mysqli_error($link));
 
-//add News
-if (isset($_POST['add'])) {
-  readfile("add_Form.html");
-}
+// //add News
+// if (isset($_POST['add'])) {
+//   readfile("add_Form.html");
+// }
 if (isset($_POST['add_news'])) {
   //user ID
   $email = $_SESSION['email'];
@@ -56,15 +56,15 @@ if (isset($_POST['add_news'])) {
   $add_name = $_POST['add_name'];
   $add_dsc = $_POST['add_dsc'];
   $add_active = $_POST['add_active'];
-  $news_Add = "INSERT news (name,description, is_active, created_at, updated_at, author_id) VALUES ('$add_name', '$add_dsc',$add_active, current_timestamp, current_timestamp,'$userID')";
+  $news_Add = "INSERT news (name,description, is_active, created_at, updated_at, author_id) VALUES ('$add_name', '$add_dsc',1, current_timestamp, current_timestamp,'$userID')";
   $news_Update_Result = mysqli_query($link, $news_Add) or die(mysqli_error($link));
   $news_Result = mysqli_query($link, $news_Query) or die(mysqli_error($link));
 }
-//edit News
-  if(isset($_POST['edit'])){
-    $update_table = New Table();
-    $update_table->editNews();
-  }
+// //edit News
+//   if(isset($_POST['edit'])){
+//     $update_table = New Table();
+//     $update_table->editNews();
+//   }
   if(isset($_POST['save_changes']) && $_POST['save_changes']==='save') {
     $old_name = $_SESSION['name'];
     $update_name = $_POST['update_name'];
@@ -75,11 +75,11 @@ if (isset($_POST['add_news'])) {
     $news_Result = mysqli_query($link, $news_Query) or die(mysqli_error($link));
     unset($_SESSION['name']);
   }
-//delete news
-if (isset($_POST['delete'])) {
-  $delete_table = New Table();
-  $delete_table->removeNews();
-}
+// //delete news
+// if (isset($_POST['delete'])) {
+//   $delete_table = New Table();
+//   $delete_table->removeNews();
+// }
 if(isset($_POST['remove'])) {
   $remove = $_POST['remove'];
   $news_Remove = "DELETE FROM news WHERE name = '$remove'";
@@ -87,12 +87,19 @@ if(isset($_POST['remove'])) {
   $news_Result = mysqli_query($link, $news_Query) or die(mysqli_error($link));
 }
 
-  readfile("add_News.html");
-  $table = New Table();
-  $table->createTable($news_Result);
-  echo "<a class='btn' href='logout.php'>Wyloguj</a>";
-  readfile("foot.html");
-} else {
-  echo "Błędne hasło";
+//   readfile("add_News.html");
+//   $table = New Table();
+//   $table->createTable($news_Result);
+//   echo "<a class='btn' href='logout.php'>Wyloguj</a>";
+//   readfile("foot.html");
+// } else {
+//   echo "Błędne hasło";
 }
+
+$data = array();
+while($res = mysqli_fetch_assoc($news_Result)){
+  $data[] = $res;
+}
+print json_encode($data, true);
+// echo json_encode($res);
  ?>

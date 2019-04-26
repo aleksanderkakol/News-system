@@ -1,0 +1,51 @@
+@import url("./style.css");
+
+/* add news button */
+.wrap {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.add_form {
+  margin: 5rem auto;
+}
+
+.add_form h3 {
+  padding: 2rem 0;
+  text-shadow: 0 0 3px black;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.add_form label {
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.add_form input {
+  width: 100%;
+}
+
+.add_form textarea {
+  text-shadow: 0 0 2px black;
+  font-size: 1.8rem;
+  color: white;
+  background-color: transparent;
+  resize: none;
+  width: 100%;
+  height: 20vh;
+}
+
+.logout {
+  color: black;
+  text-shadow: none;
+}
