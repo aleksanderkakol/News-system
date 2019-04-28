@@ -1,8 +1,9 @@
 <?php
+header('Content-Type: text/plain; charset=utf-8');
 require("CONNECTDB.php");
 $connect = new dbconn();
 $link = $connect->db();
-
+$link->set_charset("utf8");
 if (isset($_POST['first_name'])) {
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];

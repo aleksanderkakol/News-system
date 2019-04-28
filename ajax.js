@@ -4,18 +4,20 @@ function formPost(url, data, $inputs) {
     url: url,
     type: "post",
     data: data
+    // contentType: "application/json; charset=utf-8"
+    // dataType: "json"
   });
-  request.done(function(response, textStatus, jqXHR) {
+  request.done(function (response, textStatus, jqXHR) {
     console.log("Registred!");
   });
 
-  request.fail(function(jqXHR, textStatus, errorThrown) {
+  request.fail(function (jqXHR, textStatus, errorThrown) {
     console.error(
       "The following error occurred: " +
       textStatus, errorThrown
     );
   });
-  request.always(function() {
+  request.always(function () {
     $inputs.prop("disabled", false);
   });
 }
