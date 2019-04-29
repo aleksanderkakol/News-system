@@ -161,6 +161,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 50px 50px -50px red;
 }
 
 .btn:after {
@@ -177,11 +178,11 @@ a {
 }
 
 .btn:hover {
-  animation: slidebg 4s linear infinite;
+  animation: slidebg 10s linear infinite;
 }
 
 @keyframes slidebg {
-  to {
-    background-position: 40vw;
+  100% {
+    background-position: 1104px;
   }
 }

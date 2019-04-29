@@ -34,7 +34,7 @@ if($value === '1' || $_SESSION['status'] === 'logged_in') {
   }
   $_SESSION['status'] = 'logged_in';
   //change is_active column in DB
-  $is_active = "UPDATE registred SET is_active = 1 WHERE email = '$email' AND password = '$password'";
+  $is_active = "UPDATE registred SET is_active = 1, updated_at = current_timestamp WHERE email = '$email' AND password = '$password'";
   mysqli_query($link,$is_active) or die(mysqli_error($link));
   //select all news list
   $news_Query = "SELECT * FROM news";
@@ -94,6 +94,8 @@ if(isset($_POST['remove'])) {
 //   readfile("foot.html");
 // } else {
 //   echo "Błędne hasło";
+} else {
+  header("Location: index.html");
 }
 
 $data = array();
