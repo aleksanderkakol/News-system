@@ -3,21 +3,19 @@ function formPost(url, data, $inputs) {
   let request = $.ajax({
     url: url,
     type: "post",
-    data: data
-    // contentType: "application/json; charset=utf-8"
-    // dataType: "json"
+    data: data,
   });
-  request.done(function (response, textStatus, jqXHR) {
-    console.log("Registred!");
+  request.done(function(response, textStatus, jqXHR) {
+    $('.register_form').css("background-image", "linear-gradient(135deg,#66eade 0%,#764ba2 100%)");
+    $('.register_form_title').text("Zarejestrowano!");
   });
-
-  request.fail(function (jqXHR, textStatus, errorThrown) {
+  request.fail(function(jqXHR, textStatus, errorThrown) {
     console.error(
       "The following error occurred: " +
       textStatus, errorThrown
     );
   });
-  request.always(function () {
+  request.always(function() {
     $inputs.prop("disabled", false);
   });
 }

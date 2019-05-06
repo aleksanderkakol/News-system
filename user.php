@@ -7,7 +7,9 @@ class User {
   public $last_name;
   public $email;
   public $gender;
+  public $is_active;
   public $password;
+  public $password_check;
 
   public function __construct($db){
     $this->conn = $db;
@@ -19,7 +21,7 @@ class User {
       return false;
     }
 
-    $query = "INSERT INTO ".$this->table_name."(first_name, last_name, email, gender, password) VALUES (:first_name,:last_name,:email,:gender,:password)";
+    $query = "INSERT INTO ".$this->table_name."(first_name, last_name, email, gender, is_active, password) VALUES (:first_name,:last_name,:email,:gender, :is_active, :password)";
 
     $stmt = $this->conn->prepare($query);
 
@@ -27,13 +29,16 @@ class User {
     $this->last_name=htmlspecialchars(strip_tags($this->last_name));
     $this->email=$this->email;
     $this->gender=htmlspecialchars(strip_tags($this->gender));
+    $this->is_active=$this->is_active;
     $this->password=$this->password;
+    $this->password_check=$this->password_check;
 
 
     $stmt->bindParam(":first_name", $this->first_name);
     $stmt->bindParam(":last_name", $this->last_name);
     $stmt->bindParam(":email", $this->email);
     $stmt->bindParam(":gender", $this->gender);
+    $stmt->bindParam(":is_active", $this->is_active);
     $stmt->bindParam(":password", $this->password);
 
     if($stmt->execute()){
@@ -44,16 +49,15 @@ class User {
 
   }
 
-
   function login(){
-    $query = "SELECT first_name, password FROM " . $this->table_name . " WHERE first_name='".$this->first_name."' AND password='".$this->password."'";
+    $query = "SELECT email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
 }
 
 function isAlreadyExist(){
-    $query = "SELECT * FROM " . $this->table_name . " WHERE first_name='".$this->first_name."'";
+    $query = "SELECT * FROM " . $this->table_name . " WHERE email='".$this->email."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     if($stmt->rowCount() > 0){
@@ -63,7 +67,6 @@ function isAlreadyExist(){
         return false;
     }
 }
-
 }
 
  ?>
