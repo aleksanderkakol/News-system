@@ -157,7 +157,6 @@ a {
 
 .login_form, .register_form, .add_form {
   padding: 1rem;
-  overflow: hidden;
   border-radius: 30px;
   border: none;
   margin: 0 auto;
@@ -167,7 +166,7 @@ a {
 
 .btn {
   cursor: pointer;
-  margin: 1.5rem auto;
+  margin: 1.5rem 0;
   border: none;
   font-size: 1.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -190,9 +189,6 @@ a {
   color: white;
   background-color: #1e5799;
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn:hover {
