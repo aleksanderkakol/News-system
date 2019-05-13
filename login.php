@@ -1,9 +1,7 @@
 <?php
 // session_start();
-// require("connection.php");
-// require("news_Table.php");
-//
-// //set email and password to SESSION
+
+// // set email and password to SESSION
 // if(isset($_POST['email']) && isset($_POST['password'])) {
 //   $email = $_POST["email"];
 //   $password = md5($_POST["password"]);
@@ -11,11 +9,7 @@
 //   $email = $_SESSION['email'];
 //   $password = md5($_SESSION['password']);
 // }
-//
-// $connect = new dbconn();
-// $link = $connect->db();
-// $value;
-// $userID;
+
 // //check is user email and password in DB are correct
 // if (isset($_POST['email'])) {
 //   $email = $_POST['email'];
@@ -105,35 +99,33 @@
 // print json_encode($data, true);
 // // echo json_encode($res);
 
-
-
-
+session_start();
 require("connection.php");
 require("user.php");
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
 
-$user->email = isset($_GET['email']) ? $_GET['email'] : die();
-$user->password = isset($_GET['password']) ? $_GET['password'] : die();
+$user = new User($db);
+$user->email = isset($_POST['email']) ? $_POST['email'] : die();
+$user->password = isset($_POST['password']) ? $_POST['password'] : die();
 
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
+  $user->isActive();
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $user_arr=array(
-        "status" => true,
-        "message" => "Successfully Login!",
-        "email" => $row['email']
-    );
+  $user_arr=array(
+    "status" => true,
+    "message" => "Successfully Login!",
+    "email" => $row['email']
+  );
 }
 else{
-    $user_arr=array(
-        "status" => false,
-        "message" => "Invalid Email or Password!",
-    );
+  $user_arr=array(
+    "status" => false,
+    "message" => "Invalid Email or Password!",
+  );
 }
 print_r(json_encode($user_arr));
 

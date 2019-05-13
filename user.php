@@ -22,7 +22,6 @@ class User {
     }
 
     $query = "INSERT INTO ".$this->table_name."(first_name, last_name, email, gender, is_active, password) VALUES (:first_name,:last_name,:email,:gender, :is_active, :password)";
-
     $stmt = $this->conn->prepare($query);
 
     $this->first_name=htmlspecialchars(strip_tags($this->first_name));
@@ -42,31 +41,45 @@ class User {
     $stmt->bindParam(":password", $this->password);
 
     if($stmt->execute()){
-        $this->id = $this->conn->lastInsertId();
-        return true;
+      $this->id = $this->conn->lastInsertId();
+      return true;
     }
     return false;
-
   }
 
   function login(){
+    $_SESSION['email'] = $this->email;
+    $_SESSION['password'] = $this->password;
     $query = "SELECT email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
-}
+  }
 
-function isAlreadyExist(){
+  function logout($email, $password) {
+    $query = "UPDATE " . $this->table_name . " SET is_active = 0 WHERE email='$email' AND password = '$password'";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt;
+  }
+
+  function isActive() {
+    $query = "UPDATE " . $this->table_name . " SET is_active = 1 WHERE email='".$this->email."'";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt;
+  }
+
+  function isAlreadyExist(){
     $query = "SELECT * FROM " . $this->table_name . " WHERE email='".$this->email."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     if($stmt->rowCount() > 0){
-        return true;
+      return true;
     }
     else{
-        return false;
+      return false;
     }
+  }
 }
-}
-
- ?>
+?>
