@@ -1,11 +1,11 @@
 const register_form = document.querySelector('.register_form');
-const valid_form = register_form.checkValidity();
 
 $(document).ready(function() {
   $('.register_form').validate({
     errorPlacement: function(label, element) {
       label.addClass('arrow');
       label.insertAfter(element);
+      return false;
     },
     wrapper: 'span',
     rules: {
@@ -21,6 +21,9 @@ $(document).ready(function() {
         required: true,
         email: true
       },
+      gender: {
+        required: true
+      },
       password: {
         required: true,
         minlength: 3
@@ -28,6 +31,9 @@ $(document).ready(function() {
       password_check: {
         minlength: 3,
         equalTo: '#pass'
+      },
+      register_btn: {
+        required: true
       }
     },
     messages: {
@@ -48,15 +54,17 @@ $(document).ready(function() {
       }
     }
   })
-})
 
-
-
-register_form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  let $form = $(this);
-  let $inputs = $form.find("input, button, select");
-  let serializedData = $form.serialize();
-  console.log(valid_form);
-  formPost("register.php", serializedData, $inputs);
+  register_form.addEventListener('submit', function(e) {
+    let $form = $(this);
+    let $inputs = $form.find("input, button, select");
+    e.preventDefault();
+    if ($(this).validate().successList.length == $inputs.length - 1) {
+      let serializedData = $form.serialize();
+      formPost("register.php", serializedData, $inputs);
+      return false;
+    } else {
+      return false;
+    }
+  });
 })

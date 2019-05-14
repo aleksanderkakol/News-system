@@ -14,7 +14,7 @@ window.onload = function() {
         }
         thead.append('<th>Usuń</th> ');
         thead.append('<th>Edytuj</th> ');
-        for (let item of data) {
+        for (const [index, item] of data.entries()) {
           let tr = $("<tr></tr>");
           tbody.append(tr);
           tr.append('<td>' + item.name + '</td> ');
@@ -25,6 +25,17 @@ window.onload = function() {
           tr.append('<td>' + item.author_id + '</td> ');
           tr.append("<td><button class='btn_del' alt='Usuń'>Usuń</button></td>");
           tr.append("<td><button class='btn_edit' alt='Edytuj'>Edytuj</button></td>");
+
+          let btn_del = document.querySelectorAll('.btn_del');
+          let btn_edit = document.querySelectorAll('.btn_edit');
+
+          btn_del[index].addEventListener('click', function() {
+            console.log('usuń');
+          })
+
+          btn_edit[index].addEventListener('click', function() {
+            console.log('edytuj');
+          })
         }
       } else {
         console.log('Błąd pobierania danych');
@@ -39,6 +50,7 @@ window.onload = function() {
     }
   });
 }
+
 let news_btn = document.querySelector('.news_btn');
 let news_form = document.querySelector('.wrap');
 news_btn.addEventListener('click', function() {

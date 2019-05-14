@@ -1,5 +1,66 @@
 @import url("./style.css");
 
+table {
+  margin: 2rem auto;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+table, th, td, tr {
+  text-align: center;
+  border-spacing: 0;
+}
+
+th, td, tr {
+  border-bottom: 1px solid black;
+  padding: 15px;
+}
+
+th {
+  text-transform: capitalize;
+  border-top: 1px solid black;
+}
+
+th:first-child {
+  border-left: 1px solid black;
+  border-top-left-radius: 15px;
+}
+
+th:last-child {
+  border-right: 1px solid black;
+  border-top-right-radius: 15px;
+}
+
+table thead {
+  font-size: 1.2rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ebebeb;
+}
+
+th {
+  border-right: 1px solid black;
+  background-color: #4b6983;
+  color: white;
+}
+
+td {
+  border-right: 1px solid black;
+}
+
+tr {
+  transition: 0.2s background-color;
+}
+
+td:first-of-type {
+  border-left: 1px solid black;
+}
+
+tbody tr:hover {
+  background-color: #dbdbdb;
+}
+
 /* add news button */
 .wrap {
   background-color: rgba(0, 0, 0, 0.1);
@@ -13,6 +74,12 @@
 
 .add_form {
   margin: 5rem auto;
+}
+
+.add_form .btn_wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .add_form h3 {
