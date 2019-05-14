@@ -112,14 +112,13 @@ $user->password = isset($_POST['password']) ? $_POST['password'] : die();
 
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
-  $user->isActive();
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
   $user_arr=array(
     "status" => true,
     "message" => "Successfully Login!",
     "email" => $row['email']
   );
+  $user->isActive();
 }
 else{
   $user_arr=array(
@@ -128,5 +127,4 @@ else{
   );
 }
 print_r(json_encode($user_arr));
-
  ?>

@@ -11,7 +11,6 @@ $db = $database->getConnection();
 
 $user = new User($db);
 $user->logout($email, $password);
-
 session_destroy();
 header("Location: index.html");
  ?>

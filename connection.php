@@ -6,7 +6,6 @@ class Database{
     private $username = "php7";
     private $password = "php7";
     public $conn;
-
     public function getConnection(){
 
         $this->conn = null;

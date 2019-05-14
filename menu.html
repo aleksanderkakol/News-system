@@ -11,26 +11,30 @@
 </head>
 
 <body>
-  <h1>Menu</h1>
-  <button class="btn news_btn" type="button" name="new_news" alt="Dodaj news'a">Dodaj news'a</button>
-  <div class="wrap">
-    <form class="add_form" action="menu.php" method="post">
-      <h3>Dodaj News'a</h3>
-      <label>Nazwa: <input type="text" name="add_name" placeholder="Nazwa"></label>
-      <label>Opis: <textarea type="text" name="add_dsc" rows="8" cols="80"></textarea></label>
-      <button class="btn" type="submit" name="add_news" alt="Dodaj">Dodaj</button>
-      <button class="btn abort" type="submit" name="abort" alt="Anuluj">Anuluj</button>
-    </form>
-  </div>
-  <table class="table">
-    <thead>
-      <tr></tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-  <a class="logout" href="logout.php" alt="Wyloguj">Wyloguj</a>
-  <script src="./menu.js" charset="utf-8"></script>
+  <article class="article">
+    <h1>Menu</h1>
+    <button class="btn news_btn" type="button" name="new_news" alt="Dodaj news'a">Dodaj news'a</button>
+    <div class="wrap">
+      <form class="add_form" action="menu.php" method="post">
+        <h3>Dodaj News'a</h3>
+        <label>Nazwa: <input type="text" name="add_name" placeholder="Nazwa"></label>
+        <label>Opis: <textarea type="text" name="add_dsc" rows="8" cols="80"></textarea></label>
+        <div class="btn_wrap">
+          <button class="btn" type="submit" name="add_news" alt="Dodaj">Dodaj</button>
+          <button class="btn abort" type="submit" name="abort" alt="Anuluj">Anuluj</button>
+        </div>
+      </form>
+    </div>
+    <table class="table">
+      <thead>
+        <tr></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <a class="logout" href="logout.php" alt="Wyloguj">Wyloguj</a>
+  </article>
+  <script src="./menu.js" charset="utf-8" async></script>
 </body>
 
 </html>
