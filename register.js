@@ -53,7 +53,7 @@ $(document).ready(function() {
         equalTo: "Passwords are not the same!"
       }
     }
-  })
+  });
 
   register_form.addEventListener('submit', function(e) {
     let $form = $(this);
@@ -61,7 +61,25 @@ $(document).ready(function() {
     e.preventDefault();
     if ($(this).validate().successList.length == $inputs.length - 1) {
       let serializedData = $form.serialize();
-      formPost("register.php", serializedData, $inputs);
+      $inputs.prop("disabled", true);
+      let request = $.ajax({
+        url: "./register.php",
+        type: "post",
+        data: serializedData,
+      });
+      request.done(function(response, textStatus, jqXHR) {
+        $('.register_form').css("background-image", "linear-gradient(135deg,#66eade 0%,#764ba2 100%)");
+        $('.register_form_title').text("Zarejestrowano!");
+      });
+      request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+          "The following error occurred: " +
+          textStatus, errorThrown
+        );
+      });
+      request.always(function() {
+        $inputs.prop("disabled", false);
+      });
       return false;
     } else {
       return false;

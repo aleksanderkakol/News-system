@@ -1,6 +1,7 @@
 let url = './menu.php';
 let thead = $('.table thead tr');
 let tbody = $('.table tbody');
+
 window.onload = function() {
   $.ajax({
     type: 'post',

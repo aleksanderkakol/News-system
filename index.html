@@ -14,15 +14,18 @@
   <section>
     <form class="login_form" action="login.php" method="post">
       <h2 class="form_title">Zaloguj się</h2>
-      <label for="E-mail">E-mail: </label>
-      <input autocomplete="off" placeholder="E-mail" class="input email" type="email" id="E-mail" name="email" autocomplete="email">
-      <label for="pass">Hasło: </label>
-      <input placeholder="Hasło" class="input password" type="password" id="pass" name="password" autocomplete="current-password">
+      <div class="input_wrap" ng-class="{'not-empty': userEmail.length}">
+        <input autocomplete="off" class="input email" type="email" id="E-mail" name="email" ng-model="userEmail" autocomplete="email" required>
+        <label for="E-mail">E-mail: </label>
+      </div>
+      <div class="input_wrap">
+        <input class="input password" type="password" id="pass" name="password" autocomplete="current-password">
+        <label for="pass">Hasło: </label>
+      </div>
       <button class="btn" type="submit" name="submit" value="log_in" alt="Zaloguj się">Zaloguj się</button>
       <a class="link" href="register.html" alt="Zarejestruj się">Zarejestruj się</a>
     </form>
   </section>
-  <script src="ajax.js" async></script>
   <script src="login.js" async></script>
 </body>
 
