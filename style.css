@@ -94,7 +94,6 @@ a {
 }
 
 .arrow .error {
-  display: inline-block;
   font-size: 1rem;
 }
 
@@ -145,6 +144,28 @@ a {
 @keyframes slidebg {
   100% {
     background-position: 1104px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  input, select {
+    width: 100%;
+  }
+
+  .arrow {
+    position: relative;
+    display: block;
+  }
+
+  .arrow::after {
+    top: 0;
+    left: 50%;
+    border-bottom: 0;
+    border-top: 1px solid white;
+  }
+
+  .arrow .error {
+    text-align: center;
   }
 }
 
