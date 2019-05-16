@@ -1,5 +1,12 @@
 window.onload = function() {
   const login_form = document.querySelector('.login_form');
+  $('.input').change(function() {
+    if ($(this).val().length > 0) {
+      $(this).next('label').addClass('not_empty');
+    } else {
+      $(this).next('label').removeClass('not_empty');
+    }
+  })
   let url = './login.php';
   login_form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -16,10 +23,11 @@ window.onload = function() {
     });
     request.done(function(response, textStatus, jqXHR) {
       if (response.status) {
+        $inputs.removeClass('invalid_input');
         window.location.href = "./menu.html";
       } else {
-        $('.input').addClass('invalid_input');
-        console.log('Złe hasło')
+        $('label').addClass('invalid_input');
+        $('label:first').text('Błędny login lub hasło!')
       }
     });
     request.fail(function(jqXHR, textStatus, errorThrown) {
