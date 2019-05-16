@@ -1,4 +1,6 @@
 let url = './menu.php';
+let article = $('.article');
+let div = $('.wraper_error');
 let thead = $('.table thead tr');
 let tbody = $('.table tbody');
 
@@ -8,7 +10,7 @@ window.onload = function() {
     url: url,
     dataType: 'json',
     success: function(data, status) {
-      if (status === 'success') {
+      if (status === 'success' && data.length > 0) {
         let keys = Object.keys(data[0]);
         for (let i = 0; i < keys.length; i++) {
           thead.append('<th>' + keys[i] + '</th>');
@@ -38,8 +40,11 @@ window.onload = function() {
             console.log('edytuj');
           })
         }
-      } else {
-        console.log('Błąd pobierania danych');
+      }
+      if (data['status'] === "false") {
+        div.append("<h2 class='error'>" + data.message + "</h2><a class='logout' href='index.html' alt='Login'>Zaloguj ponownie</a>");
+        div.css("display", "flex");
+        article.css("display", "none");
       }
     },
     error: function(status, txt, error) {

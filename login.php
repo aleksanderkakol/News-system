@@ -13,17 +13,16 @@ $stmt = $user->login();
 
 if($stmt->rowCount() > 0){
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  $user_arr=array(
-    "status" => true,
+  $_SESSION['status'] = $user_arr=array(
+    "status" => "true",
     "message" => "Successfully Login!",
     "email" => $row['email']
   );
   $user->isActive();
-  // header("Location: menu.html");
 }
 else{
   $user_arr=array(
-    "status" => false,
+    "status" => "false",
     "message" => "Invalid Email or Password!",
   );
 }

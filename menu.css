@@ -61,6 +61,11 @@ tbody tr:hover {
   background-color: #dbdbdb;
 }
 
+.article {
+  position: relative;
+  padding: 1rem;
+}
+
 /* add news button */
 .wrap {
   background-color: rgba(0, 0, 0, 0.1);
@@ -115,4 +120,12 @@ tbody tr:hover {
 .logout {
   color: black;
   text-shadow: none;
+}
+
+.wraper_error {
+  display: none;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

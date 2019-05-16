@@ -22,7 +22,7 @@ window.onload = function() {
       data: serializedData,
     });
     request.done(function(response, textStatus, jqXHR) {
-      if (response.status) {
+      if (response.status === "true") {
         $inputs.removeClass('invalid_input');
         window.location.href = "./menu.html";
       } else {

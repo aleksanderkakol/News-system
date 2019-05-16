@@ -60,15 +60,12 @@ select {
 }
 
 a {
+  cursor: pointer;
   margin: 1rem;
   font-size: 1.2rem;
   color: white;
   font-weight: bold;
   text-shadow: 0 0 4px black;
-}
-
-.article {
-  margin: 1rem;
 }
 
 .arrow {
