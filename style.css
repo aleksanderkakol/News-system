@@ -144,9 +144,19 @@ a {
   }
 }
 
+@media screen and (max-width: 400px) {
+  .btn {
+    margin: 1.5rem auto;
+  }
+}
+
 @media screen and (max-width: 800px) {
   input, select {
     width: 100%;
+  }
+
+  .login_form {
+    height: 100vh;
   }
 
   .arrow {

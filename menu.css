@@ -129,3 +129,16 @@ tbody tr:hover {
   align-items: center;
   flex-direction: column;
 }
+
+.row_data {
+  padding: 3px;
+}
+
+.btn_edit {
+  margin: 0 3rem;
+}
+
+.options {
+  /* display: flex; */
+  /* flex-direction: column; */
+}

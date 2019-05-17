@@ -73,4 +73,11 @@
 
 .login_form .invalid_input {
   color: red;
+  opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .login_form label {
+    width: 100%;
+  }
 }
