@@ -29,14 +29,16 @@ class News {
     $this->description=htmlspecialchars(strip_tags($this->description));
     $this->is_active=$this->is_active;
 
-    $query = "UPDATE .$this->table_name SET name = $this->name, description = $this->description, is_active = $this->is_active WHERE id = $this->id";
+    $query = "UPDATE ".$this->table_name." SET name= :name, description = :description, is_active = :is_active WHERE id = :id";
+
     $stmt = $this->conn->prepare($query);
-    $stmt->execute();
 
     $stmt->bindParam(":id", $this->id);
     $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":is_active", $this->is_active);
+
+    $stmt->execute();
   }
 }
 ?>

@@ -51,8 +51,6 @@ window.onload = function() {
     }
   });
 
-
-
   $(document).on('click', '.btn_edit', function(event) {
     event.preventDefault();
     var tbl_row = $(this).closest('tr');
@@ -111,23 +109,19 @@ window.onload = function() {
       .attr('edit_type', 'click')
       .removeClass('bg-warning');
 
-    var arr = [{}];
+    var arr = {};
     tbl_row.find('.row_data').each(function(index, val) {
       var col_name = $(this).attr('col_name');
       var col_val = $(this).html();
       arr[col_name] = col_val;
     })
-    console.log(arr)
-    for (let i = 0; i < arr.length; i++) {
-      console.log(encodeURIComponent('name[]') + '=' + encodeURIComponent(arr[i]) + '&');
-    }
     let request = $.ajax({
-      url: "./menu.php",
+      url: "./save.php",
       type: "post",
-      data: JSON.stringify(arr)
+      data: arr
     });
     request.done(function(response, textStatus, jqXHR) {
-      console.log("Zapisano!");
+      console.log(textStatus);
     });
     request.fail(function(jqXHR, textStatus, errorThrown) {
       console.error(
@@ -136,7 +130,7 @@ window.onload = function() {
       );
     });
     request.always(function() {
-      console.log("Wysłano");
+      console.log("Zapisano!");
     });
   });
 
