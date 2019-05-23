@@ -43,18 +43,19 @@ window.onload = function() {
       }
     },
     error: function(status, txt, error) {
+      console.log(status);
       console.log(txt);
       console.log(error);
     },
     complete: function(data, status) {
-      console.log(status);
+      console.log(data.status);
     }
   });
 
   $(document).on('click', '.btn_edit', function(event) {
     event.preventDefault();
-    var tbl_row = $(this).closest('tr');
-    var row_id = tbl_row.attr('row_id');
+    let tbl_row = $(this).closest('tr');
+    let row_id = tbl_row.attr('row_id');
 
     tbl_row.find('.btn_save').show();
     tbl_row.find('.btn_cancel').show();
@@ -67,6 +68,11 @@ window.onload = function() {
       .addClass('bg-warning')
       .css('padding', '3px');
 
+    tbl_row.find('.row_data:first')
+      .attr('contenteditable', 'false')
+      .attr('edit_type', 'button')
+      .addClass('bg-warning')
+      .css('padding', '3px');
 
     tbl_row.find('.row_data').each(function(index, val) {
       $(this).attr('original_entry', $(this).html());
@@ -76,8 +82,8 @@ window.onload = function() {
 
   $(document).on('click', '.btn_cancel', function(event) {
     event.preventDefault();
-    var tbl_row = $(this).closest('tr');
-    var row_id = tbl_row.attr('row_id');
+    let tbl_row = $(this).closest('tr');
+    let row_id = tbl_row.attr('row_id');
 
     tbl_row.find('.btn_save').hide();
     tbl_row.find('.btn_cancel').hide();
@@ -97,7 +103,7 @@ window.onload = function() {
 
   $(document).on('click', '.btn_save', function(event) {
     event.preventDefault();
-    var tbl_row = $(this).closest('tr');
+    let tbl_row = $(this).closest('tr');
 
     tbl_row.find('.btn_save').hide();
     tbl_row.find('.btn_cancel').hide();
@@ -109,10 +115,10 @@ window.onload = function() {
       .attr('edit_type', 'click')
       .removeClass('bg-warning');
 
-    var arr = {};
+    let arr = {};
     tbl_row.find('.row_data').each(function(index, val) {
-      var col_name = $(this).attr('col_name');
-      var col_val = $(this).html();
+      let col_name = $(this).attr('col_name');
+      let col_val = $(this).html();
       arr[col_name] = col_val;
     })
     let request = $.ajax({
@@ -120,6 +126,7 @@ window.onload = function() {
       type: "post",
       data: arr
     });
+    console.log(arr)
     request.done(function(response, textStatus, jqXHR) {
       console.log(textStatus);
     });
@@ -129,8 +136,8 @@ window.onload = function() {
         textStatus, errorThrown
       );
     });
-    request.always(function() {
-      console.log("Zapisano!");
+    request.always(function(dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
+      console.log(jqXHRorErrorThrown.status);
     });
   });
 
