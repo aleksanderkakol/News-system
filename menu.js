@@ -5,6 +5,35 @@ let thead = $('.table thead tr');
 let tbody = $('.table tbody');
 
 window.onload = function() {
+  const add_form = document.querySelector('.add_form');
+  add_form.addEventListener('submit', function(e) {
+    let $form = $(this);
+    let $inputs = $form.find("input, button, select");
+    e.preventDefault();
+    let serializedData = $form.serialize();
+    $inputs.prop("disabled", true);
+    let request = $.ajax({
+      url: "./add.php",
+      type: "post",
+      data: serializedData,
+    });
+    request.done(function(response, textStatus, jqXHR) {
+      $('.add_form').css("background-image", "linear-gradient(135deg,#66eade 0%,#764ba2 100%)");
+      $('.add_form_title').text("Dodano newsa!");
+      location.reload();
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+      console.error(
+        "The following error occurred: " +
+        textStatus, errorThrown
+      );
+    });
+    request.always(function() {
+      $inputs.prop("disabled", false);
+    });
+    return false;
+  });
+
   $.ajax({
     type: 'post',
     url: url,
@@ -126,7 +155,6 @@ window.onload = function() {
       type: "post",
       data: arr
     });
-    console.log(arr)
     request.done(function(response, textStatus, jqXHR) {
       console.log(textStatus);
     });
@@ -142,6 +170,35 @@ window.onload = function() {
   });
 
 }
+
+$(document).on('click', '.btn_delete', function(event) {
+  let tbl_row = $(this).closest('tr');
+  let arr = {};
+  tbl_row.find('.row_data').each(function(index, val) {
+    let col_name = $(this).attr('col_name');
+    let col_val = $(this).html();
+    arr[col_name] = col_val;
+  })
+  let request = $.ajax({
+    url: "./delete.php",
+    type: "post",
+    data: arr
+  });
+  console.log(arr)
+  request.done(function(response, textStatus, jqXHR) {
+    console.log(textStatus);
+    tbl_row.closest('tr').remove();
+  });
+  request.fail(function(jqXHR, textStatus, errorThrown) {
+    console.error(
+      "The following error occurred: " +
+      textStatus, errorThrown
+    );
+  });
+  request.always(function(dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
+    console.log(jqXHRorErrorThrown.status);
+  });
+})
 
 let news_btn = document.querySelector('.news_btn');
 let news_form = document.querySelector('.wrap');

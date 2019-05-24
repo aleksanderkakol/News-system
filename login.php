@@ -13,10 +13,11 @@ $stmt = $user->login();
 
 if($stmt->rowCount() > 0){
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  $_SESSION['author_id'] = $row['id'];
   $_SESSION['status'] = $user_arr=array(
     "status" => "true",
     "message" => "Successfully Login!",
-    "email" => $row['email']
+    "email" => $row['email'],
   );
   $user->isActive();
 }

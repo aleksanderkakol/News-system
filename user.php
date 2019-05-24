@@ -50,7 +50,7 @@ class User {
   function login(){
     $_SESSION['email'] = $this->email;
     $_SESSION['password'] = $this->password;
-    $query = "SELECT email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
+    $query = "SELECT id, email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;

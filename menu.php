@@ -13,6 +13,6 @@ else {
     "status" => "false",
     "message" => "Invalid Email or Password!",
   );
-  print_r(json_encode($error));
+  print_r(json_encode($_SESSION['status']));
 }
  ?>

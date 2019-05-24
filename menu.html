@@ -15,10 +15,10 @@
     <h1>Menu</h1>
     <button class="btn news_btn" type="button" name="new_news" alt="Dodaj news'a">Dodaj news'a</button>
     <div class="wrap">
-      <form class="add_form" action="menu.php" method="post">
-        <h3>Dodaj News'a</h3>
-        <label>Nazwa: <input type="text" name="add_name" placeholder="Nazwa"></label>
-        <label>Opis: <textarea type="text" name="add_dsc" rows="8" cols="80"></textarea></label>
+      <form class="add_form" action="add.php" method="post">
+        <h3 class="add_form_title">Dodaj News'a</h3>
+        <label>Nazwa: <input type="text" name="name" placeholder="Nazwa"></label>
+        <label>Opis: <textarea type="text" name="description" rows="8" cols="80"></textarea></label>
         <div class="btn_wrap">
           <button class="btn" type="submit" name="add_news" alt="Dodaj">Dodaj</button>
           <button class="btn abort" type="submit" name="abort" alt="Anuluj">Anuluj</button>
