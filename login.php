@@ -8,7 +8,7 @@ $db = $database->getConnection();
 
 $user = new User($db);
 $user->email = isset($_POST['email']) ? $_POST['email'] : null;
-$user->password = isset($_POST['password']) ? $_POST['password'] : null;
+$user->password = isset($_POST['password']) ? md5($_POST['password']) : null;
 $stmt = $user->login();
 
 if($stmt->rowCount() > 0){

@@ -29,8 +29,8 @@ class User {
     $this->email=$this->email;
     $this->gender=htmlspecialchars(strip_tags($this->gender));
     $this->is_active=$this->is_active;
-    $this->password=$this->password;
-    $this->password_check=$this->password_check;
+    $this->password=md5($this->password);
+    $this->password_check=md5($this->password_check);
 
 
     $stmt->bindParam(":first_name", $this->first_name);
@@ -49,7 +49,7 @@ class User {
 
   function login(){
     $_SESSION['email'] = $this->email;
-    $_SESSION['password'] = $this->password;
+    $_SESSION['password'] = md5($this->password);
     $query = "SELECT id, email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
@@ -57,6 +57,7 @@ class User {
   }
 
   function logout($email, $password) {
+    $password = md5($password);
     $query = "UPDATE " . $this->table_name . " SET is_active = 0 WHERE email='$email' AND password = '$password'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
