@@ -49,7 +49,7 @@ class User {
 
   function login(){
     $_SESSION['email'] = $this->email;
-    $_SESSION['password'] = md5($this->password);
+    $_SESSION['password'] = $this->password;
     $query = "SELECT id, email, password FROM " . $this->table_name . " WHERE email='".$this->email."' AND password='".$this->password."'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
@@ -57,7 +57,6 @@ class User {
   }
 
   function logout($email, $password) {
-    $password = md5($password);
     $query = "UPDATE " . $this->table_name . " SET is_active = 0 WHERE email='$email' AND password = '$password'";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
