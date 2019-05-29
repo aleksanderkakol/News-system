@@ -11,9 +11,9 @@ function table(data) {
     tr.append(`<td><div col_name='name' class="row_data">${item.name}</div></td>`);
     tr.append(`<td><div col_name='description' class="row_data">${item.description}</div></td>`);
     tr.append(`<td><div col_name='is_active' class="row_data">${item.is_active}</div></td>`);
-    tr.append('<td><div>' + item.created_at + '</div></td> ');
-    tr.append('<td><div>' + item.updated_at + '</div></td> ');
-    tr.append('<td><div>' + item.author + '</div></td> ');
+    tr.append('<td><div>' + item.created_at + '</div></td>');
+    tr.append('<td><div>' + item.updated_at + '</div></td>');
+    tr.append('<td><div>' + item.author + '</div></td>');
     tr.append("<td><div class='options'><button class='btn_edit' alt='Edytuj'>Edytuj</button><button class='btn_save' alt='Zapisz'>Zapisz</button><button class='btn_delete' alt='Usuń'>Usuń</button><button class='btn_cancel' alt='Anuluj'>Anuluj</button></div></td>");
   }
 }

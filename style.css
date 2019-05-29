@@ -118,6 +118,8 @@ a {
   align-items: center;
   justify-content: center;
   box-shadow: 0 50px 50px -50px red;
+  animation: slidebg 10s linear infinite;
+  animation-play-state: paused;
 }
 
 .btn:after {
@@ -131,7 +133,7 @@ a {
 }
 
 .btn:hover {
-  animation: slidebg 10s linear infinite;
+  animation-play-state: running;
 }
 
 .btn:active {
